@@ -24,7 +24,7 @@ lst=[];tab=0
 a2=0;a1=0;i=0;a3=0;a4=0;e=0
 
 tab1=0
-fichier=open("/home/clementperrousset/Documents/Fichier_Gpu/gpu.txt", "r");
+fichier=open("Fichier_Gpu/gpu.txt", "r");
 for i in fichier:			
 	Nb=i.count("BEGIN:VEVENT");	#Permet de chercher la première ligne de commande 'BEGIN:VEVENT'
 	for tab in range(Nb-1):
@@ -115,12 +115,14 @@ for i in fichier:
 			lst[tab1].append(a3)
 			lst[tab1].append(a4)
 			lst[tab1].append(str(Jour1.date()))
+
 			lst[tab1].append(Duree)
 			lst[tab1].append(W)
 			lst[tab1].append(Semestre)
 			tab1+=1;
 		j=0;
-print (lst[0][8])
+print ("Voici un simple élément",lst[0][8])
+print(lst)
 		
 #print (lst)
 #return lst
