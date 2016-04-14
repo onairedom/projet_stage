@@ -110,9 +110,9 @@ def tableau():
 
 			if j==3:
 				lst[tab1].append(Sujet)
+				lst[tab1].append(a3)
 				lst[tab1].append(a2)
 				lst[tab1].append(a1)
-				lst[tab1].append(a3)
 				lst[tab1].append(a4)
 				lst[tab1].append(str(Jour1.date()))
 				lst[tab1].append(Duree)
