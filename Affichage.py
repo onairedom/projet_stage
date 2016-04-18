@@ -45,12 +45,14 @@ for i in recap: #tableau liste matière
 				j='STCE';
 			elif j=='Eval Wims':
 				j='EW'
-
+			
 			if i==j:  #Compare grand tableau et list matière
+
 				k=0;
 					 #Récupère durée d'un cours
-				Hour=','.join(e[6])  #Sépare  heure pour créer Heure avec datetime
+				Hour=','.join(e[7])  #Sépare  heure pour créer Heure avec datetime
 				H=Hour[0]
+		
 				if Hour[2].isnumeric()==True:
 					H=Hour[0]+Hour[2]
 				if Hour[6].isnumeric()==True and Hour[4].isnumeric()==True:
@@ -59,19 +61,19 @@ for i in recap: #tableau liste matière
 					M=Hour[6]+Hour[8]
 				H=int(H)
 				M=int(M)
-
+				
 				t1=datetime.timedelta(0,(3600*H+60*M))
-				print(t1)
 				t2=t1+t2
 				if e[1]==1:	#Permet d'augmenter heure faite en fonction type de séance cours,td,tp...
 					t=t+t1*1.5
+				elif e[0]=='DS':
+					t=t+t1*0.5
+				elif e[0]=='AM2':
+					t=t+t1*0.5
 				else:
 					t=t+t1
-				
 				t5=t.total_seconds()
 				t3=t1.total_seconds()
-
-				print(t3)
 				t4=int(t3+t4)
 	time4.append(t5)	#Création de tableau qui garde la durée en seconds en tenant compte coeff
 	time3.append(t4)	#Création de tableau qui garde la durée en seconds sans coeff
@@ -82,11 +84,7 @@ for i in recap: #tableau liste matière
 	t2=datetime.timedelta(0,(0+0))
 	t=datetime.timedelta(0,(0+0))
 
-# print(time)
-# print(time2)
-# print (time3) #seconde sans coeff
-# print (time4)	#seconde coeff
-# print("coucou",time3)
+
 nb_heure=[];matiere=[];x=[]
 k=0;
 for i in time4:
@@ -97,20 +95,23 @@ for j in recap:
 	x.append(k)
 	k=k+1
 	matiere.append(j)
+
+
+
 ############################################histogramme terminé##############################################""
-plt.bar(x, nb_heure, align='center', edgecolor = 'red', hatch = '/')  # ces deux lignes permettent de mettre des string dans un histogrammes plutot que des entiers
-plt.xticks(x, matiere) # x est une liste composé du nombre d'éléments qe l'on veut mettre en horizontal
-plt.grid(True) # celà sert à mettre une grille dans le diagramme
-plt.xlabel('Matières') 
-plt.ylabel(u"Nombre d'heures")
-plt.title("Nombre d'heures par matière sur l'année")
-plt.text(600,500,'STCE=SOUTENANCE EW=Eval Wims')# a travailler
-plt.show()
+# plt.bar(x, nb_heure, align='center', edgecolor = 'red', hatch = '/')  # ces deux lignes permettent de mettre des string dans un histogrammes plutot que des entiers
+# plt.xticks(x, matiere) # x est une liste composé du nombre d'éléments qe l'on veut mettre en horizontal
+# plt.grid(True) # celà sert à mettre une grille dans le diagramme
+# plt.xlabel('Matières') 
+# plt.ylabel(u"Nombre d'heures")
+# plt.title("Nombre d'heures par matière sur l'année")
+# plt.text(600,500,'STCE=SOUTENANCE EW=Eval Wims')# a travailler
+# plt.show()
 
 
 ###########################################création tableau pour toutes les semaines####################################################
 
-l=53 # on créé une variable qui rpz le nb de semaine plus 1pour le nombre de matière
+l=54 # on créé une variable qui rpz le nb de semaine plus 1 pour le nombre de matière
 
 Semaine=[]
 for i in range(l):
@@ -131,11 +132,15 @@ for j in Semaine:		#On créé le nombre des semaines dans la colonne 0 du tablea
 	k+=1
 
 
-
 for j in lst:		#On va chercher le nombre d'heure par matière par semaine pour compléter ce nouveau tableau
-	s=j[7]
 	m=j[0]
-	Hour=','.join(j[6])  #Sépare  heure pour créer Heure avec datetime
+	if m=='SOUTENANCE':
+		m='STCE';
+	elif m=='Eval Wims':
+		m='EW'
+	s=j[8]
+	
+	Hour=','.join(j[7])  #Sépare  heure pour créer Heure avec datetime
 	H=Hour[0]
 	if Hour[2].isnumeric()==True:
 		H=Hour[0]+Hour[2]
@@ -146,60 +151,67 @@ for j in lst:		#On va chercher le nombre d'heure par matière par semaine pour c
 	H=int(H)
 	M=int(M)
 	t1=datetime.timedelta(0,(3600*H+60*M))
+	if j[1]==1:	#Permet d'augmenter heure faite en fonction type de séance cours,td,tp...
+		t1=t1*1.5
+	elif j[0]=='DS':
+		t=t1*0.5
+	elif j[0]=='AM2':
+		t1=t1*0.5
+	elif j[5]=='_TD':
+		t1=t1*0.5
 	time=t1.total_seconds()
+
 	time2=time/3600
-	# if m=='STCE':
-	# 	m='SOUTENANCE'
-	# elif m=='EW':
-	# 	m='Eval Wims'
-	if m in Semaine[0]:
+	if m in Semaine[0]:  #Recherche le nom de la matière dans la première ligne du tableau semaine pour lui assigné la position de la matière dans le tableau par la suite
 		index=Semaine[0].index(m)
 	Semaine[s][index]=time2+Semaine[s][index]
 
-print(Semaine)
+###############################################création 2ème histogramme pour nb heure matière sur toute l'année########################################
 
-###############################################création 2ème histogramme pour nb heure matière sur toute l'année
 
-for i in range(nb_mat): #car on commence a 0 et pour faire correspondre les numéros de matières avec les heures
-	 globals()['y%s' % i] = [] # créé des tableau avec des noms comportant un chiffre de 0 à nb de matière
+for i in range(nb_mat+1): #car on commence a 0 et pour faire correspondre les numéros de matières avec les heures
+	 	globals()['y%s' % i] = [0] # créé des tableau avec des noms comportant un chiffre de 0 à nb de matière
 
-	
+for i in range(nb_mat+1): 
+	for j in range (51):
+		globals()['y%s' % i].append(0) # créé des tableaux correspondant 
 
-# nb_heure=[];matiere=[];x=[];
-# m=0;n=0;k=0;
-# for i in Semaine: #Parcours tableau semaine
-# 	for j in i:	#parcours chaque ligne avec nombre d'heure ont le meme indice que dans le tableau recap des matière
-# 		if m==nb_mat:
-# 			m=0;
-# 		if type(j)==float : #Prend le nombre d'heure par matière et insère le numéro de la semaine qui correspond à l'entier du nb d'heure pr pouvoir le rpz
-# 			a=math.floor(j) #on insère le numéro de la semaine le nombre correspondant à la durée du cours dans le tableau
-# 			print(a)		# si le tp d'info de la semaine 4 dur 3h on insère le chiffre 4 mais 3 fois dans le tableau num 0 qui correspond a la matière info
-# 			for e in range(a):
-# 				globals()['y%s' % m].append(i[0]) # utilise tableau ayant des noms de 0 à nb_matière et ajoute le nombre d'heure a l'intérieur
-			
-# 		m+=1;	
 
 nb_heure=[];matiere=[];x=[];
-m=0;n=0;k=0;
+m=-1;n=0;k=0;
 for i in Semaine: #Parcours tableau semaine
 	for j in i:	#parcours chaque ligne avec nombre d'heure ont le meme indice que dans le tableau recap des matière
-		if m==nb_mat:
+		a=i[0]
+		# print("c'est moi",a)
+		if m==(nb_mat):
 			m=0;
+		# print(j)
 		if type(j)==float : #Prend le nombre d'heure par matière et insère le numéro de la semaine qui correspond à l'entier du nb d'heure pr pouvoir le rpz
-			globals()['y%s' % m].append(j) # utilise tableau ayant des noms de 0 à nb_matière et ajoute le nombre d'heure a l'intérieur
-			
+			globals()['y%s' % m][a]=j # utilise tableau ayant des noms de 0 à nb_matière et ajoute le nombre d'heure a l'intérieur
+			# print("matière",m, "nb heure",j)
 		m+=1;	
 
 
 
+print (Semaine)
+print(y0)
+print(y1)
+print(y2)
+print(y3)
+print(y4)
+print(y5)
+print(y6)
+print(y7)
 
 
-for j in Semaine:
+j=1
+
+for j in range(53):
 	x.append(k)
 	k=k+1
 	
-# print(x)
-print(recap)
+# print("x",x)
+# print("recap",recap)
 # print("me voila",y0)
 # print("me voila1",y1)
 # print("me voila2",y2)
@@ -217,11 +229,14 @@ print(recap)
 
 
 col=[]
-Y=[]
+Y=[];L=[]
 k=0;
-for i in range(nb_mat):
-	a=globals()['y%s' % i]
+j=0;
+for i in recap:
+	a=globals()['y%s' % j]
 	Y.append(a)
+	L.append(i)
+	j+=1;
 	if k==0:
 		col.append('yellow')		
 	elif k==1:
@@ -266,19 +281,55 @@ for i in range(nb_mat):
 		col.append('#AF8136')
 	elif k==21:
 		col.append('#AF9463')
+	elif k==22:
+		col.append('#AF2425')
+	elif k==23:
+		col.append('#AF3425')
+	elif k==24:
+		col.append('#AF4687')
+	elif k==25:
+		col.append('#AF5267')
+	elif k==26:
+		col.append('#AF6381')
+	elif k==27:
+		col.append('#AF5594')
+	elif k==28:
+		col.append('#AF4154')
+	elif k==29:
+		col.append('#AF2168')
+	elif k==30:
+		col.append('#AF8463')
+	elif k==31:
+		col.append('#AF4543')
+	elif k==32:
+		col.append('#AF2136')
+	elif k==33:
+		col.append('#AF5463')
+	elif k==34:
+		col.append('#AF1687')
+	elif k==35:
+		col.append('#AF1267')
+	elif k==36:
+		col.append('#AF1381')
+	elif k==37:
+		col.append('#AF1594')
 	k+=1;
-print(y0)
-barWidth = 0.8
-y1 = [1, 2, 4, 3]
-y2 = [3.2, 4, 4.8, 3]
-r = range(nb_mat)
+	barWidth = 0.8
+	print(i)
+	r = range(len(y0))
+	plt.bar(r, a, width = barWidth, color = col, edgecolor = ['blue' for i in y1], linestyle = 'solid', hatch ='/',linewidth = 3)
+	plt.xticks([r + barWidth / 2 for r in range(len(y0))], x)
 
-plt.bar(r, y0, width = barWidth, color = col, edgecolor = ['blue' for i in y1], linestyle = 'solid', hatch ='/',linewidth = 3)
-# plt.bar(r, y2, width = barWidth, bottom = y1, color = ['pink' for i in y1],
-#            edgecolor = ['green' for i in y1], linestyle = 'dotted', hatch = 'o',
-#            linewidth = 3)
-plt.xticks([r + barWidth / 2 for r in range(len(y0))], x)
+
+red_patch = patches.Patch(color='red', label='The red data')
+plt.legend(handles=[red_patch])
+# plt.legend(Y,L )
+plt.xlabel('Numéro des Semaines')
+plt.ylabel("Nombre d'Heures")
+plt.title("Nombre d'heures par matière sur l'année")
 plt.show()
+
+
 
 
 # barWidth = 0.8
@@ -301,8 +352,7 @@ plt.show()
 # plt.hist(Y, range = (1, len(x)), bins = bins, color = col, edgecolor = 'red',histtype = 'barstacked',align='mid')
 # #plt.xticks(x, matiere) # x est une liste composé du nombre d'éléments qe l'on veut mettre en horizontal
 # plt.axis([1,52,1,23])
-# plt.xlabel('valeurs')
-# plt.ylabel("nombres d'heures")
+
 # plt.title("Représentation du nombre d'heure faite dans l'année par matière")
 # plt.show()
 
@@ -312,7 +362,7 @@ plt.xticks(x, matiere) # x est une liste composé du nombre d'éléments qe l'on
 plt.grid(True) # celà sert à mettre une grille dans le diagramme
 plt.xlabel('Semaines') 
 plt.ylabel(u"Nombre d'heures")
-plt.title("Nombre d'heures par matière sur l'année")
+
 plt.text(600,500,'STCE=SOUTENANCE EW=Eval Wims')# a travailler
 plt.show()"""
 

@@ -21,7 +21,7 @@ def tableau():
 	lignes,colonnes=10,9
 	lst=[];tab=0
 
-	a2=0;a1=0;i=0;a3=0;a4=0;e=0
+	a2=0;a1=0;i=0;a3=0;a4=0;a5=0;e=0
 
 	tab1=0
 	fichier=open("Fichier_Gpu/gpu.txt", "r");
@@ -65,6 +65,10 @@ def tableau():
 			if Sum in d:
 				a,temp,b = d.partition('SUMMARY:')
 				Sujet,temp1,b1 = b.partition(' ')
+
+				if ' _TD' in b:
+					a1=0;a2=0;a3=0;a4=0;a5='_TD'
+							
 				if Sujet=='SOUTENANCE':
 					Type='SOUTENANCE';
 					Semestre="Fin d'Année";
@@ -79,6 +83,7 @@ def tableau():
 					g,h,T=b2.partition(' PRIORITY')
 					k,l,Type=g.partition(' ')
 					g.split(' ')
+
 				if 'TP' in g:					#Recherche chaîne de caractère tp pour ensuite vérifier le nombre de chiffre qui suivent et l'ajouter dans la variable adequate
 					Type='TP';
 					a=g.index('TP');a+=1;
@@ -106,22 +111,25 @@ def tableau():
 
 				elif 'SOUTENANCE' in g:
 					a1=0;a2=0;a3=0;a4=1;
+				
 				j+=1;
-
 			if j==3:
 				lst[tab1].append(Sujet)
 				lst[tab1].append(a3)
 				lst[tab1].append(a2)
 				lst[tab1].append(a1)
 				lst[tab1].append(a4)
+				lst[tab1].append(a5)
 				lst[tab1].append(str(Jour1.date()))
 				lst[tab1].append(Duree)
 				lst[tab1].append(W)
 				lst[tab1].append(Semestre)
 				tab1+=1;
-			j=0;
-
-	return(lst)
 			
-	
+				a5=0
+			
+			j=0;
+	return(lst)
+
+
 	fichier.close();
