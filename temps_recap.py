@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from prog15 import tableau
+from prog16 import tableau
 import time
 import datetime
 import random
@@ -20,8 +20,11 @@ def temps():
 	for i in lst:	# Parcours grand tableau
 		if lst[k][0] not in recap: #récupère élément tableau
 			recap.append(lst[k][0]) #ajoute élément dans petit tableau
+		if 'Férié' in recap:
+			recap.remove('Férié')
 		k+=1
 	m=0
+
 	for j in recap:
 		if j=='SOUTENANCE':
 			recap[m]='STCE'
@@ -30,9 +33,6 @@ def temps():
 			recap[m]='EW'
 			
 		m+=1;
-
-
-
 	t2=datetime.timedelta(0,(0+0))
 	t=datetime.timedelta(0,(0+0))
 	t4=0;t5=0
@@ -44,7 +44,8 @@ def temps():
 					j='STCE';
 				elif j=='Eval Wims':
 					j='EW'
-				
+				if j=='Férié':
+					break;
 				if i==j:  #Compare grand tableau et list matière
 
 					k=0;
@@ -60,7 +61,6 @@ def temps():
 						M=Hour[6]+Hour[8]
 					H=int(H)
 					M=int(M)
-					
 					t1=datetime.timedelta(0,(3600*H+60*M))
 					t2=t1+t2
 					if e[1]==1:	#Permet d'augmenter heure faite en fonction type de séance cours,td,tp...
@@ -84,7 +84,7 @@ def temps():
 		t=datetime.timedelta(0,(0+0))
 
 	return(recap,time4,time3,time2,time);
-	# return(time4);
-	# return(time3);
-	# return(time2);
-	# return(time);
+		# return(time4);
+		# return(time3);
+		# return(time2);
+		# return(time);

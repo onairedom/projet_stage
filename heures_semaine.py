@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-from prog15 import tableau
+from prog16 import tableau
 from temps_recap import temps
-from histo_recap import histogramme
 import time
 import datetime
 import random
@@ -36,13 +35,14 @@ def semaine():
 				Semaine[k].append(0)
 		k+=1
 
-
 	for j in lst:		#On va chercher le nombre d'heure par matière par semaine pour compléter ce nouveau tableau
 		m=j[0]
 		if m=='SOUTENANCE':
 			m='STCE';
 		elif m=='Eval Wims':
 			m='EW'
+		elif m=='Férié':
+			break;
 		s=j[8]
 		
 		Hour=','.join(j[7])  #Sépare  heure pour créer Heure avec datetime
@@ -59,7 +59,6 @@ def semaine():
 		if j[1]==1:	#Permet d'augmenter heure faite en fonction type de séance cours,td,tp...
 			t1=t1*1.5
 		elif j[0]=='DS':
-			print("Salurt")
 			t1=t1*0.5
 		elif j[0]=='AM2':
 			t1=t1*0.5
@@ -72,4 +71,4 @@ def semaine():
 			index=Semaine[0].index(m)
 		Semaine[s][index]=time2+Semaine[s][index]
 
-	return (Semaine,nb_mat);
+	return(Semaine,nb_mat);

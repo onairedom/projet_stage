@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-from prog15 import tableau
 from temps_recap import temps
 import time
 import datetime
@@ -26,7 +25,7 @@ def histogramme():
 		k=k+1
 		matiere.append(j)
 
-	return(nb_heure,matiere)
+
 	##########################################################histogramme terminé######################################################################################
 	plt.bar(x, nb_heure, align='center', edgecolor = 'red', hatch = '/')  # ces deux lignes permettent de mettre des string dans un histogrammes plutot que des entiers
 	plt.xticks(x, matiere) # x est une liste composé du nombre d'éléments qe l'on veut mettre en horizontal
@@ -36,4 +35,4 @@ def histogramme():
 	plt.title("Nombre d'heures par matière sur l'année")
 	plt.text(600,500,'STCE=SOUTENANCE EW=Eval Wims')# a travailler
 	plt.show()
-
+	return(nb_heure,matiere)

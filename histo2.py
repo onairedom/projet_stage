@@ -1,9 +1,7 @@
 #!/usr/bin/python3
-from prog15 import tableau
 from temps_recap import temps
-from histo_recap import histogramme
+# from histo_recap import histogramme
 from heures_semaine import semaine
-
 import time
 import datetime
 import random
@@ -189,16 +187,16 @@ def histo():
 		k+=1;
 		j+=1;
 
-	print(Semaine)
-	print(y0,sum(y0))
-	print(y1,sum(y1))
-	print(y2,sum(y2))
-	print(y3,sum(y3))
-	print(y4,sum(y4))
-	print(y5,sum(y5))
-	print(y6,sum(y6))
-	print(y7,sum(y7))
-	print(y8,sum(y8))
+	# print(Semaine)
+	# print(y0,sum(y0))
+	# print(y1,sum(y1))
+	# print(y2,sum(y2))
+	# print(y3,sum(y3))
+	# print(y4,sum(y4))
+	# print(y5,sum(y5))
+	# print(y6,sum(y6))
+	# print(y7,sum(y7))
+	# print(y8,sum(y8))
 	plt.xlabel('Numéro des Semaines')
 	plt.ylabel("Nombre d'Heures")
 	plt.title("Nombre d'heures par matière sur l'année")
