@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-from prog16 import tableau
 from temps_recap import temps
 import time
 import datetime
@@ -13,8 +12,9 @@ import pylab as plt
 
 def semaine():
 	###########################################création tableau pour toutes les semaines###################################################################
-	recap,time4,time3,time2,time=temps();
-	lst=tableau()
+	recap,time4,time3,time2,time,lst=temps();
+
+	print(type(lst))
 	l=54 # on créé une variable qui rpz le nb de semaine plus 1 pour le nombre de matière
 
 	Semaine=[]
@@ -70,5 +70,4 @@ def semaine():
 		if m in Semaine[0]:  #Recherche le nom de la matière dans la première ligne du tableau semaine pour lui assigné la position de la matière dans le tableau par la suite
 			index=Semaine[0].index(m)
 		Semaine[s][index]=time2+Semaine[s][index]
-
-	return(Semaine,nb_mat);
+	return(recap,time4,time3,time2,time,lst,Semaine,nb_mat);

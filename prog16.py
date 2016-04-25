@@ -19,6 +19,7 @@ j=0;
 Type="";b="";Time=""
 lignes,colonnes=10,9
 lst=[];tab=0
+ll=[]
 
 
 def tableau():
@@ -40,7 +41,7 @@ def tableau():
 
 	for tab in range(Nb-1):
 		lst.append([])
-
+		ll.append([])
 	#### Après avoir créer le tableau de la bonne taille par rapport au nombre de BEGIN:VEVENT#################
 	##########Je Met n'importe quel fichier sous la forme d'une seule grande ligne qui peut être par la suite partitionné le nb de fois nécessaire pour récupérer les informations afin de remplir mon tableau###############
 	a,b,c=S0.partition("BEGIN:VEVENT") 
@@ -198,6 +199,7 @@ def tableau():
 
 	for tab in range(Nb-3):
 		lst.append([])
+		ll.append([])
 
 	a,b,c=S0.partition("BEGIN:VEVENT")
 	d,k,f=c.partition("END:VEVENT")
@@ -328,5 +330,6 @@ def tableau():
 				a5=0
 			
 			j=0;
-	return (lst)
+	
+	return(lst)
 	fichier.close();

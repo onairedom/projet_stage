@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from prog16 import tableau
+from creation_tuple import tuple1
 import time
 import datetime
 import random
@@ -8,13 +8,14 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import math
 import pylab as plt
-
+from creation_tuple import tuple1
 
 def temps():
-	lst=tableau()
+
 	k=0;Heure=0;Min=0
 	recap=[];time=[];time2=[];time3=[];time4=[]
 	semaine=[];
+	lst=tuple1()
 	j=0
 	var=""
 	for i in lst:	# Parcours grand tableau
@@ -83,8 +84,5 @@ def temps():
 		t2=datetime.timedelta(0,(0+0))
 		t=datetime.timedelta(0,(0+0))
 
-	return(recap,time4,time3,time2,time);
-		# return(time4);
-		# return(time3);
-		# return(time2);
-		# return(time);
+	return(recap,time4,time3,time2,time,lst);
+	

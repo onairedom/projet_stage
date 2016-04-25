@@ -1,9 +1,5 @@
 #!/usr/bin/python3
-from prog16 import tableau
-from temps_recap import temps
 from histo_recap import histogramme
-from heures_semaine import semaine
-from histo2 import histo
 import time
 import datetime
 import random
@@ -15,10 +11,10 @@ import pylab as plt
 
 def periode_semaine():
 
-	lst=tableau()
-	recap,time4,time3,time2,time=temps();
-	nb_heure,matiere=histogramme()
-	Semaine,nb_mat=semaine()
+	# lst=tableau()
+	recap,time4,time3,time2,time,lst,Semaine,nb_mat,nb_heure,matiere=histogramme();
+
+
 	a=int(input("Quelles semaines voulez vous voir ? Donnez la première "))
 	b=int(input("La deuxième "))
 
@@ -42,8 +38,6 @@ def periode_semaine():
 			a+=1
 
 		
-	print("me voila",x)
-	print(tps)
 	for i in range(nb_mat+1): #car on commence a 0 et pour faire correspondre les numéros de matières avec les heures
 		 	globals()['y%s' % i] = [0] # créé des tableau avec des noms comportant un chiffre de 0 à nb de matière
 		 	
@@ -58,7 +52,7 @@ def periode_semaine():
 			m=0;a=0;
 			for l in x:
 				if i[0]==l:
-					print("c'est moi",a)
+					# print("c'est moi",a)
 					# for e in recap:
 					if m==(nb_mat+1):
 							m=0;
@@ -68,16 +62,16 @@ def periode_semaine():
 			
 						m+=1;
 				a+=1
-	print(Semaine)
-	print(y0,sum(y0))
-	print(y1,sum(y1))
-	print(y2,sum(y2))
-	print(y3,sum(y3))
-	print(y4,sum(y4))
-	print(y5,sum(y5))
-	print(y6,sum(y6))
-	print(y7,sum(y7))
-	print(y8,sum(y8))
+	# print(Semaine)
+	# print(y0,sum(y0))
+	# print(y1,sum(y1))
+	# print(y2,sum(y2))
+	# print(y3,sum(y3))
+	# print(y4,sum(y4))
+	# print(y5,sum(y5))
+	# print(y6,sum(y6))
+	# print(y7,sum(y7))
+	# print(y8,sum(y8))
 			
 
 	col=[]
@@ -183,3 +177,4 @@ def periode_semaine():
 	plt.title("Nombre d'heures par matière sur la période demandé")
 	plt.legend()
 	plt.show()
+	return(recap,time4,time3,time2,time,lst,Semaine,nb_mat,nb_heure,matiere);

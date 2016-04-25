@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from temps_recap import temps
+from heures_semaine import semaine
 import time
 import datetime
 import random
@@ -12,7 +12,7 @@ import pylab as plt
 
 def histogramme():
 
-	recap,time4,time3,time2,time=temps();
+	recap,time4,time3,time2,time,lst,Semaine,nb_mat=semaine();
 
 	nb_heure=[];matiere=[];x=[]
 	k=0;
@@ -35,4 +35,5 @@ def histogramme():
 	plt.title("Nombre d'heures par matière sur l'année")
 	plt.text(600,500,'STCE=SOUTENANCE EW=Eval Wims')# a travailler
 	plt.show()
-	return(nb_heure,matiere)
+
+	return(recap,time4,time3,time2,time,lst,Semaine,nb_mat,nb_heure,matiere);

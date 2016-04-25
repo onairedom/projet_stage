@@ -1,10 +1,7 @@
 #!/usr/bin/python3
-from temps_recap import temps
-from histo_recap import histogramme
-from heures_semaine import semaine
 from histo2 import histo
-from Periode import periode_semaine
-from prog16 import tableau
+# from histo_recap import histogramme
+# from histo2 import histo
 import time
 import datetime
 import random
@@ -15,10 +12,6 @@ import math
 import pylab as plt
 
 
-# # recap,time4,time3,time2,time=temps();
-nb_heure,matiere=histogramme()
-# Semaine,nb_mat=semaine()
 
-# histo();
-# periode_semaine();
-lst=tableau()
+recap,time4,time3,time2,time,lst,Semaine,nb_mat,nb_heure,matiere=histo();
+print(lst)
