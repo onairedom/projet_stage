@@ -27,6 +27,7 @@ def tableau():
 	fichier=open("Fichier_Gpu/gpu.txt", "r");
 	for i in fichier:			
 		Nb=i.count("BEGIN:VEVENT");	#Permet de trouver le nombre de 'BEGIN:VEVENT'
+		print(Nb)
 		for tab in range(Nb-1):
 			lst.append([])
 		a,b,c=i.partition("BEGIN:VEVENT")
@@ -130,6 +131,7 @@ def tableau():
 			
 			j=0;
 	return(lst)
+	fichier.close()
 
 
-	fichier.close();
+

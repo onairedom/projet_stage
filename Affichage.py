@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-from histo2 import histo
+# from Periode import periode_semaine
 # from histo_recap import histogramme
-# from histo2 import histo
+from histo2 import histo
 import time
 import datetime
 import random
@@ -14,4 +14,3 @@ import pylab as plt
 
 
 recap,time4,time3,time2,time,lst,Semaine,nb_mat,nb_heure,matiere=histo();
-print(lst)

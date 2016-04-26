@@ -34,6 +34,6 @@ def histogramme():
 	plt.ylabel(u"Nombre d'heures")
 	plt.title("Nombre d'heures par matière sur l'année")
 	plt.text(600,500,'STCE=SOUTENANCE EW=Eval Wims')# a travailler
-	plt.show()
+	# plt.show(block=False)
 
 	return(recap,time4,time3,time2,time,lst,Semaine,nb_mat,nb_heure,matiere);

@@ -22,9 +22,10 @@ lst=[];tab=0
 ll=[]
 
 
+
 def tableau():
 
-	fichier=open("Fichier_Gpu/gpu.txt", "r");
+	fichier=open('/home/clementperrousset/Documents/Fichier_Gpu/gpu.txt', "r");
 	Nb=0
 	S0='';S1=''
 	S=[]
@@ -65,6 +66,7 @@ def tableau():
 			T=T[1:]
 			Date,l,Time=T.partition('T') ############Récupération heure et date
 			Tim=Time
+
 			Time=Time[:6]
 			Date2=','.join(Date)	#Range tous les caractères de la date dans une chîne de caractère séparé par une virgule
 			Y=Date2[0]+Date2[2]+Date2[4]+Date2[6] #Associe uniquement les caractère qui nous intéresse modulo 2 car virgule
@@ -181,8 +183,9 @@ def tableau():
 			
 			j=0;
 	fichier.close();
-
-	fichier=open("Fichier_Gpu/UPU.ics", "r");
+	Jour1=0
+	Jour2=0
+	fichier=open("Fichier_Gpu/EPU.ics", "r");
 	Nb=0
 	S0='';S1=''
 	S=[]
@@ -223,6 +226,7 @@ def tableau():
 			Date,l,Time=T.partition('T')
 			Tim=Time
 			Time=Time[:6]
+			# print(Time)
 			Date2=','.join(Date)	#Range tous les caractères de la date dans une chîne de caractère séparé par une virgule
 			Y=Date2[0]+Date2[2]+Date2[4]+Date2[6] #Associe uniquement les caractère qui nous intéresse modulo 2 car virgule
 			M=Date2[8]+Date2[10]
@@ -238,6 +242,7 @@ def tableau():
 			Date,l,Time=T.partition('T')
 			Date=Date[1:]
 			Time=Time[:6]
+			# print(Time)
 			Date3=','.join(Date)#utilisation de partition pour récuperer chaîne de caractère placé dans une autre chaine de caractère séparé par des virgules
 			Y1=Date3[0]+Date3[2]+Date3[4]+Date3[6]
 			M1=Date3[8]+Date3[10]

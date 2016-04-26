@@ -27,7 +27,6 @@ def periode_semaine():
 		for i in range(tps+1): ###Permet de créer la variable pour afficher le nb de semaines en abscisse##############################
 			if a==53:
 				a=1
-			print("je suis la")
 			x.append(a)
 			a+=1
 
@@ -63,35 +62,50 @@ def periode_semaine():
 						m+=1;
 				a+=1
 	# print(Semaine)
-	# print(y0,sum(y0))
-	# print(y1,sum(y1))
-	# print(y2,sum(y2))
-	# print(y3,sum(y3))
-	# print(y4,sum(y4))
-	# print(y5,sum(y5))
-	# print(y6,sum(y6))
-	# print(y7,sum(y7))
-	# print(y8,sum(y8))
-			
+	print(y0,sum(y0))
+	print(y1,sum(y1))
+	print(y2,sum(y2))
+	print(y3,sum(y3))
+	print(y4,sum(y4))
+	print(y5,sum(y5))
+	print(y6,sum(y6))
+	print(y7,sum(y7))
+	print(y8,sum(y8))
+	print(y9,sum(y9))		
 
 	col=[]
 	Y=[];L=[]
-	k=0;
-	j=1;
+	k=0;X=[];k1=1
+	to=1;cpt=0
+	m=0
+	for w in range(tps+1): #Creation tableau qui va additionner les y entre eux pr permettre suppression superpositions
+		X.append(0)
 
 
 	for i in recap:
-		a=globals()['y%s' % j]  ## Utilisation de tableau avec des noms différent pour remplir les horraires en fonction de chaque matière
+		a=globals()['y%s' % to]  ## Utilisation de tableau avec des noms différent pour remplir les horraires en fonction de chaque matière
 		Y.append(a)
 		L.append(i)
-		
+		cpt=0
+
+
+		for j in range (tps):
+			for cpt in range(k1):
+					# print('chaud chaud',k)
+				m=m+globals()['y%s' % cpt][j]
+					# print(globals()['y%s' % cpt][j])
+					
+				# print('salut',m)
+				# print('hey',j)
+			X[j]=m
+			m=0
+
 		if k==0:
 			col.append('yellow')		
 		elif k==1:
 			col.append('green')
 		elif k==2:
 			col.append('grey')
-			
 		elif k==3:
 			col.append('orange')
 		elif k==4:
@@ -164,13 +178,15 @@ def periode_semaine():
 			col.append('#AF1594')
 		
 
-		
 		barWidth = 0.8
-		r = range(len(y0))
-		plt.bar(r, a, width = barWidth, color = col[k], edgecolor = ['blue' for i in y1], linestyle = 'solid', hatch ='/',linewidth = 3, label=recap[k])
-		plt.xticks([r + barWidth / 2 for r in range(len(y0))], x)
+		r = range(len(a))
+		plt.bar(r, a, width = barWidth,bottom=X ,color = col[k], edgecolor = ['blue' for i in y1], linestyle = 'solid', hatch ='/',linewidth = 3, label=recap[k])
+		plt.xticks([r + barWidth for r in range(len(a))], x)
+		print("c'est aaaaaa",X)
 		k+=1;
-		j+=1;
+		k1+=1
+		to+=1;
+
 
 	plt.xlabel('Numéro des Semaines')
 	plt.ylabel("Nombre d'Heures")

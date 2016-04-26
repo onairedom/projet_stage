@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-from temps_recap import temps
-# from histo_recap import histogramme
-from heures_semaine import semaine
+from Periode import periode_semaine
 import time
 import datetime
 import random
@@ -14,8 +12,7 @@ import pylab as plt
 
 def histo():
 	###############################################création 2ème histogramme pour nb heure matière sur toute l'année########################################
-	Semaine,nb_mat=semaine()
-	recap,time4,time3,time2,time=temps();
+	recap,time4,time3,time2,time,lst,Semaine,nb_mat,nb_heure,matiere=periode_semaine();
 
 	for i in range(nb_mat+1): #car on commence a 0 et pour faire correspondre les numéros de matières avec les heures
 		 	globals()['y%s' % i] = [0] # créé des tableau avec des noms comportant un chiffre de 0 à nb de matière
@@ -68,10 +65,10 @@ def histo():
 			# print(j)
 			if type(j)==float : #Prend le nombre d'heure par matière et insère le numéro de la semaine qui correspond à l'entier du nb d'heure pr pouvoir le rpz
 				globals()['y%s' % m][a]=j # utilise tableau ayant des noms de 0 à nb_matière et ajoute le nombre d'heure a l'intérieur
-				print(globals()['y%s' % m])
-				print('liste num',m)
-				print("position",a)
-				print("on envoi",j)
+				# print(globals()['y%s' % m])
+				# print('liste num',m)
+				# print("position",a)
+				# print("on envoi",j)
 			m+=1;
 		if i[0]==35:
 			break;
@@ -202,3 +199,4 @@ def histo():
 	plt.title("Nombre d'heures par matière sur l'année")
 	plt.legend()
 	plt.show()
+	return(recap,time4,time3,time2,time,lst,Semaine,nb_mat,nb_heure,matiere);
