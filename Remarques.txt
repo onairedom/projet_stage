@@ -1,1 +1,2 @@
 -> Il serait bien de faire un fichier du style Readme pour savoir le rôle de chaque fichier et de savoir quoi lancer pour voir les résultats.
+-> Penses à modifier le chemin du fichier GPU pour qu'il soit relatif (pour que ça marche sur mon pc sans mofifier ton programme).
