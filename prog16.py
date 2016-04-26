@@ -25,7 +25,7 @@ ll=[]
 
 def tableau():
 
-	fichier=open('/home/clementperrousset/Documents/Fichier_Gpu/gpu.txt', "r");
+	fichier=open('Fichier_Gpu/gpu.txt', "r");
 	Nb=0
 	S0='';S1=''
 	S=[]
