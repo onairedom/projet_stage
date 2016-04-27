@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# from Periode import periode_semaine
+from Periode import periode_semaine
 # from histo_recap import histogramme
 from histo2 import histo
 import time

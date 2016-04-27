@@ -2,10 +2,12 @@
 from histo_recap import histogramme
 import time
 import datetime
+from pylab import *
 import random
 import calendar
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
+from matplotlib.backends.backend_pdf import PdfPages
 import math
 import pylab as plt
 
@@ -177,7 +179,7 @@ def periode_semaine():
 		elif k==37:
 			col.append('#AF1594')
 		
-
+		figure(1)
 		barWidth = 0.8
 		r = range(len(a))
 		plt.bar(r, a, width = barWidth,bottom=X ,color = col[k], edgecolor = ['blue' for i in y1], linestyle = 'solid', hatch ='/',linewidth = 3, label=recap[k])
@@ -187,10 +189,10 @@ def periode_semaine():
 		k1+=1
 		to+=1;
 
-	plt.figure(2)
+	
 	plt.xlabel('Numéro des Semaines')
 	plt.ylabel("Nombre d'Heures")
 	plt.title("Nombre d'heures par matière sur la période demandé")
 	plt.legend()
-	plt.show()
+	
 	return(recap,time4,time3,time2,time,lst,Semaine,nb_mat,nb_heure,matiere);

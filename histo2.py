@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 from Periode import periode_semaine
+from pylab import *
 import time
 import datetime
 import random
@@ -37,20 +38,28 @@ def histo():
 	##Créer une liste qui parcourt les semaine de 36 a 52 puis de 1 à 36
 
 	nb_heure=[];matiere=[];x=[];
-	k=0;
+	k=0;n=0;u=0;a=19
 	for i in reversed (Semaine): #Parcours tableau semaine
 		m=0;
 		for j in i:	#parcours chaque ligne avec nombre d'heure ont le meme indice que dans le tableau recap des matière
-			
-			a=52-i[0];
+			print("NNNNNNNNNNNNNNNNNNNNNNNNN",n)
+			print('JJJJJJJJJJJJJJJJJJJJJJJJJJ',i)
+	
+			# if i[0]!=n:
+			# 	u=n
+			# 	n=i[0]
+			if i[0]!=n:
+				a-=1
+				print(a)
 			if m==(nb_mat+1):
 				m=0;
-				
-			# print(j)
+			# print("IIIIIIIIIIIIIIIII",i[0])
+			# print("SSSSSSSSSSSSSSSSSSS",a)
 			if type(j)==float : #Prend le nombre d'heure par matière et insère le numéro de la semaine qui correspond à l'entier du nb d'heure pr pouvoir le rpz
 				globals()['y%s' % m][a]=j # utilise tableau ayant des noms de 0 à nb_matière et ajoute le nombre d'heure a l'intérieur
-			
 			m+=1;
+			n=i[0]
+
 		if i[0]==35:
 			break;
 
@@ -92,19 +101,30 @@ def histo():
 
 	col=[]
 	Y=[];L=[]
-	k=0;
-	j=0;
+	k=0;X=[];k1=1
+	j=0;to=1
+	cpt=0;m=0
+	for w in range(52): #Creation tableau qui va additionner les y entre eux pr permettre suppression superpositions
+		X.append(0)
+
+
 	for i in recap:
-		a=globals()['y%s' % j]  ## Utilisation de tableau avec des noms différent pour remplir les horraires en fonction de chaque matière
+		a=globals()['y%s' % to]  ## Utilisation de tableau avec des noms différent pour remplir les horraires en fonction de chaque matière
 		Y.append(a)
 		L.append(i)
-		
+		cpt=0
+		for j in range(52):
+			for cpt in range(k1):
+				m=m+globals()['y%s' % cpt][j]
+			X[j]=m
+			m=0
+
 		if k==0:
 			col.append('yellow')		
 		elif k==1:
 			col.append('green')
 		elif k==2:
-			col.append('blue')
+			col.append('grey')
 		elif k==3:
 			col.append('orange')
 		elif k==4:
@@ -118,7 +138,7 @@ def histo():
 		elif k==8:
 			col.append('magenta')
 		elif k==9:
-			col.append('grey')
+			col.append('blue')
 		elif k==10:
 			col.append('pink')
 		elif k==11:
@@ -176,13 +196,14 @@ def histo():
 		elif k==37:
 			col.append('#AF1594')
 		
-
+		figure(2)
 		barWidth = 0.8
 		r = range(len(y0))
-		plt.bar(r, a, width = barWidth, color = col[k], edgecolor = ['blue' for i in y1], linestyle = 'solid', hatch ='/',linewidth = 3, label=recap[k])
-		plt.xticks([r + barWidth / 2 for r in range(len(y0))], x)
+		plt.bar(r, a, width = barWidth,bottom=X, color = col[k], edgecolor = ['blue' for i in y1], linestyle = 'solid', hatch ='/',linewidth = 3, label=recap[k])
+		plt.xticks([r + barWidth for r in range(len(y0))], x)
 		k+=1;
-		j+=1;
+		k1+=1
+		to+=1
 
 	# print(Semaine)
 	# print(y0,sum(y0))
