@@ -1,0 +1,72 @@
+#!/usr/bin/python3
+# from Periode import periode_semaine
+# from histo_recap import histogramme
+# from histo2 import histo
+from Create_Tab import *
+# import time
+# import datetime
+# import random
+# import calendar
+# import matplotlib.pyplot as plt
+# import matplotlib.patches as patches
+# import math
+# import pylab as plt
+
+
+
+
+# recap,time4,time3,time2,time,lst,Semaine,nb_mat,nb_heure,matiere=histo();
+
+def main():
+	size=getNumberFiles()
+	for i in range (size):
+		path=getFilePath()
+		lst=createTab(path)
+
+		print (lst)
+
+
+## input function
+def getNumberFiles():
+	nb_files=int(input('Cb de fichier?'))
+	return nb_files
+
+
+def getFilePath():
+	path=input('chemin?')
+	return path
+
+
+
+
+
+
+main()
+
+
+
+
+
+
+
+
+# def demande():
+# 	# Récupérer tous les tab à partir des fichiers
+# 	list_tab = []
+# 	for
+# 		path = getFilePath()
+# 		tab.append(txt2tab(path))
+
+# 	# Rassembler les tab en 1 seul
+# 	tab = assemble_tab(list_tab)
+
+# 	# Transformer table en tuple
+# 	tup = tab2tuple(tab)
+
+# 	# a=int(input("Combien de fichiers voulez vous charger ?"))
+
+# 	# for e in range(b1):
+# 	# 	a=input('Donnez le chemin du fichier')
+# 	# 	lst=tableau(a)
+# 	return(lst)
+
