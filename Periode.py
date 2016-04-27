@@ -187,7 +187,7 @@ def periode_semaine():
 		k1+=1
 		to+=1;
 
-
+	plt.figure(2)
 	plt.xlabel('Numéro des Semaines')
 	plt.ylabel("Nombre d'Heures")
 	plt.title("Nombre d'heures par matière sur la période demandé")
