@@ -1,13 +1,13 @@
-from prog16 import tableau
+from createTab import *
 
+# APPEND TUPLE VERSION
+def tuple1(lst):
+	# init tuple
+	tup = ()
+	
+	# fill tuple
+	for list_element in lst:
+		# transform list element in tuple element
+		tup = tup + (tuple(list_element),)
 
-def tuple1():
-
-	lst=tableau()
-	o=0;
-	for i in lst:
-		lst[o]=tuple(lst[o])
-		# print(lst[o])
-		o+=1
-	lst=(tuple(lst))
-	return(lst)
+	return tup
