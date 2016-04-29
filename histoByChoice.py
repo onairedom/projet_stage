@@ -5,8 +5,9 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from matplotlib.backends.backend_pdf import PdfPages
 import pylab as plt
+import os
 
-def histoByChoice(subjects, Weeks, numberSubjects):
+def histoByChoice(subjects, Weeks, numberSubjects, fileTxt):
 	week1=int(input("Quelles semaines voulez vous voir ? Donnez la première "))
 	week2=int(input("La deuxième "))
 	week=week1
@@ -158,7 +159,10 @@ def histoByChoice(subjects, Weeks, numberSubjects):
 		k+=1;
 		k1+=1
 		to+=1;
-
+	# file = open (fileTxt,'a')
+	# savepath = os.path.join(directory, file)
+	# plt.savefig(savepath)
+	# file.close()
 	
 	plt.xlabel('Numéro des Semaines')
 	plt.ylabel("Nombre d'Heures")

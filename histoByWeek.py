@@ -10,7 +10,7 @@ import math
 import pylab as plt
 
 
-def histoByWeek(subjects, Weeks, numberSubjects):
+def histoByWeek(subjects, Weeks, numberSubjects, fileTxt):
 	###############################################création 2ème histogramme pour nb heure matière sur toute l'année########################################
 
 	for i in range(numberSubjects+1): #car on commence a 0 et pour faire correspondre les numéros de matières avec les heures

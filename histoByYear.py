@@ -6,7 +6,7 @@ import pylab as plt
 from matplotlib.backends.backend_pdf import PdfPages
 
 
-def histoByYear(subjects, secondWithCoeff):
+def histoByYear(subjects, secondWithCoeff, fileTxt):
 
 	nb_heure=[];
 	for i in secondWithCoeff:
