@@ -2,8 +2,9 @@ from pylab import *
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import pylab as plt
+import os
 
-def txtRecap(subjects, secondWithCoeff, duration, week1, week2, Weeks, fileTxt):
+def txtRecap(subjects, secondWithCoeff, duration, week1, week2, Weeks, fileTxt, fileT):
 	Hour=[]; cptSemaine=0;wcpt='';cptH=0
 	file = open (fileTxt,'a')
 	for i in range(len(secondWithCoeff)):
@@ -12,8 +13,8 @@ def txtRecap(subjects, secondWithCoeff, duration, week1, week2, Weeks, fileTxt):
 
 	cpt=0
 	for subject in subjects:
-		print ("Dans l'année vous avez", Hour[cpt], "H de", subject)
-		file.write("Dans l'année vous avez "+str(Hour[cpt])+ " H de "+ str(subject)+"\n")
+		print ("Dans l'annee vous avez", Hour[cpt], "H de", subject)
+		file.write("Dans l'annee vous avez "+str(Hour[cpt])+ " H de "+ str(subject)+"\n")
 		cpt+=1;
 	
 	for week in range(len(Weeks)):
@@ -60,5 +61,14 @@ def txtRecap(subjects, secondWithCoeff, duration, week1, week2, Weeks, fileTxt):
 					file.write("Dans la semaine "+str(Weeks[week][0])+ "vous avez eu "+str(cptSemaine)+' H\n')
 				cptSemaine=0
 	file.close()
+
+	os.system('enscript -p ben.ps ben.txt')
+	os.system('ps2pdf ben.ps ben.pdf')
+	os.system('rm -rf ben.ps ben.txt')
+
+
+	# os.system('enscript -p '+fileT+'.ps' +fileT+'.txt')
+	# os.system('ps2pdf '+fileT+'.ps '+fileT+'.pdf')
+	# os.system('rm -rf '+fileT+'.ps '+fileT+'.txt')
 
 	plt.show()

@@ -7,7 +7,16 @@ from matplotlib.backends.backend_pdf import PdfPages
 import pylab as plt
 import os
 
-def histoByChoice(subjects, Weeks, numberSubjects, fileTxt):
+
+def save(path, ext='png', close=True, verbose=True):
+	file = open (fileTxt,'a')
+	Documents= os.path.split(path)[0]
+	fileTxt =  "%s.%s" % (os.path.split(path)[1], ext)
+	savepath = os.path.join(Documents, fileTxt)
+	plt.savefig(savepath)
+	file.close()
+
+def histoByChoice(subjects, Weeks, numberSubjects, fileTxt, fileT):
 	week1=int(input("Quelles semaines voulez vous voir ? Donnez la première "))
 	week2=int(input("La deuxième "))
 	week=week1
@@ -159,14 +168,12 @@ def histoByChoice(subjects, Weeks, numberSubjects, fileTxt):
 		k+=1;
 		k1+=1
 		to+=1;
-	# file = open (fileTxt,'a')
-	# savepath = os.path.join(directory, file)
-	# plt.savefig(savepath)
-	# file.close()
-	
 	plt.xlabel('Numéro des Semaines')
 	plt.ylabel("Nombre d'Heures")
 	plt.title("Nombre d'heures par matière sur la période demandé")
 	plt.legend()
+	savefig('figure1'+'.pdf')
 	
 	return(duration, week, week2)
+
+	

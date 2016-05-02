@@ -8,6 +8,8 @@ from histoByWeek import *
 from histoByChoice import *
 from txtRecap import *
 from createTxt import *
+#from pdftk import *
+import os 
 # import time
 # import datetime
 # import random
@@ -51,7 +53,7 @@ def main():
 	lst_tup = tuple1(full_list)
 
 	## Creation file txt
-	fileTxt = createTxt()
+	fileTxt, fileT = createTxt()
 
 	##creation listes temps en fonction de matière et liste de matière (voir hourByYear.py)
 	subjects, secondWithCoeff, second, hourWithCoeff, hour=getHourByYear(lst_tup)
@@ -68,10 +70,18 @@ def main():
 	histoByWeek(subjects, Weeks, numberSubjects, fileTxt)
 
 	##Créer 3eme histogramme en fonction de l'utilisateur et afficher les 3 histogrammes(voir Periode.py)
-	duration, week1, week2 = histoByChoice(subjects, Weeks, numberSubjects, fileTxt)
+	duration, week1, week2 = histoByChoice(subjects, Weeks, numberSubjects, fileTxt,fileT)
+
+	## Concatenate pdf
+	os.system('pdftk figure1.pdf figure2.pdf cat output Res.pdf')
 
 	##Créer fichier texte récapitulatif
-	txtRecap(subjects, secondWithCoeff, duration, week1, week2, Weeks, fileTxt)
+	txtRecap(subjects, secondWithCoeff, duration, week1, week2, Weeks, fileTxt, fileT)
+
+	## Concatenate pdf
+	os.system('pdftk Res.pdf figure3.pdf cat output Resultat.pdf')
+	os.system('pdftk Resultat.pdf ben.pdf cat output Recapitulatif.pdf')
+	os.system('rm -rf figure1.pdf figure2.pdf figure3.pdf Resultat.pdf Res.pdf')
 
 
 

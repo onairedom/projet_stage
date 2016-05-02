@@ -55,7 +55,7 @@ def hourByWeek(inputTuple, subjects):
 		t1=datetime.timedelta(0,(3600*H+60*M))
 		if j[1]==1:	#Permet d'augmenter heure faite en fonction type de séance cours,td,tp...
 			t1=t1*1.5
-		elif j[0]=='DS':
+		if j[0]=='DS':
 			t1=t1*0.5
 		elif j[0]=='AM2':
 			t1=t1*0.5
