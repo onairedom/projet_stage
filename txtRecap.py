@@ -13,7 +13,7 @@ def txtRecap(subjects, secondWithCoeff, duration, week1, week2, Weeks, fileTxt, 
 
 	cpt=0
 	for subject in subjects:
-		print ("Dans l'annee vous avez", Hour[cpt], "H de", subject)
+		print ("Dans l'annee vous avez", Hour[cpt], " H de", subject)
 		file.write("Dans l'annee vous avez "+str(Hour[cpt])+ " H de "+ str(subject)+"\n")
 		cpt+=1;
 	
@@ -24,26 +24,26 @@ def txtRecap(subjects, secondWithCoeff, duration, week1, week2, Weeks, fileTxt, 
 			cptH=1
 			for subject in subjects:
 				if Weeks[week][cptH]!=0:
-					print("Dans la semaine", Weeks[week][0],"Vous avez eu", Weeks[week][cptH],"H de", subject)
-					file.write("Dans la semaine "+str(Weeks[week][0])+" Vous avez eu "+ str(Weeks[week][cptH])+" H de "+str(subject)+'\n')
+					print("Dans la semaine", Weeks[week][0]," vous avez eu", Weeks[week][cptH]," H de", subject)
+					file.write("Dans la semaine "+str(Weeks[week][0])+" vous avez eu "+ str(Weeks[week][cptH])+" H de "+str(subject)+'\n')
 					cptSemaine = cptSemaine + Weeks[week][cptH] 
 				cptH+=1
 			if cptSemaine != 0 :
 				print("Cette Semaine vous avez fait", cptSemaine)
-				file.write("Dans la semaine "+str(Weeks[week][0])+ "vous avez eu "+str(cptSemaine)+' H\n')
+				file.write("Dans la semaine "+str(Weeks[week][0])+ " vous avez eu "+str(cptSemaine)+' H\n')
 			cptSemaine=0
 		elif week2<week1:
 			if Weeks[week][0]>=week1 and Weeks[week][0]<=52:
 				cptH=1
 				for subject in subjects:
 					if Weeks[week][cptH]!=0:
-						print("Dans la semaine", Weeks[week][0],"Vous avez eu", Weeks[week][cptH],"H de", subject)
-						file.write("Dans la semaine "+ str(Weeks[week][0])+" Vous avez eu "+ str(Weeks[week][cptH])+" H de "+subject+"\n")
+						print("Dans la semaine", Weeks[week][0]," vous avez eu", Weeks[week][cptH]," H de", subject)
+						file.write("Dans la semaine "+ str(Weeks[week][0])+" vous avez eu "+ str(Weeks[week][cptH])+" H de "+subject+"\n")
 						cptSemaine = cptSemaine + Weeks[week][cptH] 
 					cptH+=1
 				if cptSemaine !=0:
 					print("Cette Semaine vous avez fait", cptSemaine)
-					file.write("Dans la semaine "+str(Weeks[week][0])+ "vous avez eu "+str(cptSemaine)+' H\n')
+					file.write("Dans la semaine "+str(Weeks[week][0])+ " vous avez eu "+str(cptSemaine)+' H\n')
 				cptSemaine=0
 			if Weeks[week][0]==53:
 				Weeks[week][0]=0;
@@ -52,23 +52,16 @@ def txtRecap(subjects, secondWithCoeff, duration, week1, week2, Weeks, fileTxt, 
 				cptH=1
 				for subject in subjects:
 					if Weeks[week][cptH]!=0:
-						print("Dans la semaine", Weeks[week][0],"Vous avez eu", Weeks[week][cptH],"H de", subject)
-						file.write("Dans la semaine "+ str(Weeks[week][0])+" Vous avez eu "+str(Weeks[week][cptH])+" H de "+ subject+"\n")
+						print("Dans la semaine", Weeks[week][0]," vous avez eu", Weeks[week][cptH],"H de", subject)
+						file.write("Dans la semaine "+ str(Weeks[week][0])+" vous avez eu "+str(Weeks[week][cptH])+" H de "+ subject+"\n")
 						cptSemaine = cptSemaine + Weeks[week][cptH] 
 					cptH+=1
 				if cptSemaine!=0:
 					print("Cette Semaine vous avez fait", cptSemaine)
-					file.write("Dans la semaine "+str(Weeks[week][0])+ "vous avez eu "+str(cptSemaine)+' H\n')
+					file.write("Dans la semaine "+str(Weeks[week][0])+ " vous avez eu "+str(cptSemaine)+' H\n')
 				cptSemaine=0
 	file.close()
-
-	os.system('enscript -p ben.ps ben.txt')
-	os.system('ps2pdf ben.ps ben.pdf')
-	os.system('rm -rf ben.ps ben.txt')
-
-
-	# os.system('enscript -p '+fileT+'.ps' +fileT+'.txt')
-	# os.system('ps2pdf '+fileT+'.ps '+fileT+'.pdf')
-	# os.system('rm -rf '+fileT+'.ps '+fileT+'.txt')
+	
+	os.system("enscript " + fileT + ".txt -o - | ps2pdf - " + fileT + ".pdf")
 
 	plt.show()

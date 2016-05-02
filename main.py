@@ -81,7 +81,9 @@ def main():
 	## Concatenate pdf
 	os.system('pdftk Res.pdf figure3.pdf cat output Resultat.pdf')
 	os.system('pdftk Resultat.pdf ben.pdf cat output Recapitulatif.pdf')
-	os.system('rm -rf figure1.pdf figure2.pdf figure3.pdf Resultat.pdf Res.pdf')
+
+	## Suppression pdf inutile
+	os.system('rm -rf figure1.pdf figure2.pdf figure3.pdf Resultat.pdf Res.pdf ' + fileT +'.pdf')
 
 
 
