@@ -61,7 +61,6 @@ def txtRecap(subjects, secondWithCoeff, duration, week1, week2, Weeks, fileTxt, 
 					file.write("Dans la semaine "+str(Weeks[week][0])+ " vous avez eu "+str(cptSemaine)+' H\n')
 				cptSemaine=0
 	file.close()
-	
 	os.system("enscript " + fileT + ".txt -o - | ps2pdf - " + fileT + ".pdf")
 
 	plt.show()

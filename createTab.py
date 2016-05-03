@@ -20,9 +20,7 @@ Type="";b="";Time=""
 lignes,colonnes=10,9
 
 
-## si plusierus fichier texte enable permet de continuer la liste, tab1 es communiqué entre le main et cette fonction pr la même raison
-def createTab(path, enable):
-
+def createTab(path):
 	fichier=open(path, "r");
 	Nb=0
 	S0='';S1=''
@@ -30,7 +28,6 @@ def createTab(path, enable):
 	j=0;
 	lst=[];tab1=0
 	tab=0
-
 	for i in fichier:	#Rentre toutes les lignes du fichiers dans la variable S1	
 		S1=S1+i
 		Nb=i.count("BEGIN:VEVENT")+Nb;	#Permet de trouver le nombre de 'BEGIN:VEVENT'
@@ -181,5 +178,5 @@ def createTab(path, enable):
 				a5=0
 			
 			j=0;
-	return(lst, tab1)
+	return(lst)
 	fichier.close();

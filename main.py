@@ -8,30 +8,13 @@ from histoByWeek import *
 from histoByChoice import *
 from txtRecap import *
 from createTxt import *
-#from pdftk import *
 import os 
-# import time
-# import datetime
-# import random
-# import calendar
-# import matplotlib.pyplot as plt
-# import matplotlib.patches as patches
-# import math
-# import pylab as plt
-# import sys
-# import tkinter 
-# import tkinter.filedialog
-# import os
-
-# root = tkinter.Tk()
-# currdir = os.getcwd()+'/input/'
 
 
 
-# recap,time4,time3,time2,time,lst,Semaine,nb_mat,nb_heure,matiere=histo();
 
 def main():
-	enable=0; tab1=0
+	tab1=0
 	size=getNumberFiles()
 	cpt=0
 	full_list=[]
@@ -40,8 +23,7 @@ def main():
 		path, cpt=getFilePath(cpt)
 
 		#créer tableau récapitulatif
-		lst, tab1 = createTab(path,enable) #debug 
-		enable=1
+		lst = createTab(path)
 
 		# ajouter lst à full_list
 		full_list += lst
@@ -124,8 +106,6 @@ def getFilePath(cpt):
 
 
 main()
-
-
 
 
 

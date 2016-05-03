@@ -174,5 +174,6 @@ def histoByWeek(subjects, Weeks, numberSubjects, fileTxt):
 	plt.xlabel('Numéro des Semaines')
 	plt.ylabel("Nombre d'Heures")
 	plt.title("Nombre d'heures par matière sur l'année")
-	plt.legend()
+	plt.legend(loc='best')
+	# , bbox_to_anchor=(1, 0.5))
 	savefig('figure2'+'.pdf')
