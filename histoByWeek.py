@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-from pylab import *
 import time
 import datetime
 import random
@@ -45,7 +44,6 @@ def histoByWeek(subjects, Weeks, numberSubjects, fileTxt):
 			if compteur==(numberSubjects+1):
 				compteur=0;
 					
-			# print(j)
 			if type(j)==float : #Prend le nombre d'heure par matière et insère le numéro de la semaine qui correspond à l'entier du nb d'heure pr pouvoir le rpz
 				globals()['y%s' % compteur][a]=j # utilise tableau ayant des noms de 0 à numberSubjects et ajoute le nombre d'heure a l'intérieur
 			compteur+=1;
@@ -162,7 +160,7 @@ def histoByWeek(subjects, Weeks, numberSubjects, fileTxt):
 		elif k==37:
 			col.append('#AF1594')
 		
-		figure(2)
+		plt.figure(2)
 		barWidth = 0.8
 		r = range(len(y0))
 		plt.bar(r, listSubject, width = barWidth,bottom=X, color = col[k], edgecolor = ['blue' for i in y1], linestyle = 'solid', hatch ='/',linewidth = 3, label=subjects[k])
@@ -176,4 +174,4 @@ def histoByWeek(subjects, Weeks, numberSubjects, fileTxt):
 	plt.title("Nombre d'heures par matière sur l'année")
 	plt.legend(loc='best')
 	# , bbox_to_anchor=(1, 0.5))
-	savefig('figure2'+'.pdf')
+	plt.savefig('figure2'+'.pdf')

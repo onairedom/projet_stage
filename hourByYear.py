@@ -35,9 +35,11 @@ def getHourByYear(inputTuple):
 	t=datetime.timedelta(0,(0+0))
 	t4=0;t5=0
 	for subject in subjects: #tableau liste matière
+
 		t2=datetime.timedelta(0,(0+0))
 		t1=datetime.timedelta(0,(0+0))
 		for elementTuple in inputTuple: #prend chaque ligne grand tableau
+
 			cp+=1
 			for member in elementTuple:  #Récup info dans chaque ligne
 				
@@ -51,7 +53,7 @@ def getHourByYear(inputTuple):
 					#Récupère durée d'un cours
 					Hour=','.join(elementTuple[7])  #Sépare  heure pour créer Heure avec datetime
 					H=Hour[0]
-				
+					
 			
 					if Hour[2].isnumeric()==True:
 						H=Hour[0]+Hour[2]
@@ -84,6 +86,7 @@ def getHourByYear(inputTuple):
 		t5=0
 		t2=datetime.timedelta(0,(0+0))
 		t=datetime.timedelta(0,(0+0))
+
 
 	return(subjects, secondWithCoeff, second, hourWithCoeff, hour);
 	#   input/gpu.txt

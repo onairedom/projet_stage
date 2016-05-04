@@ -58,7 +58,7 @@ def main():
 	os.system('pdftk figure1.pdf figure2.pdf cat output Res.pdf')
 
 	##Créer fichier texte récapitulatif
-	txtRecap(subjects, secondWithCoeff, duration, week1, week2, Weeks, fileTxt, fileT)
+	txtRecap(subjects, secondWithCoeff, week1, week2, Weeks, fileTxt, fileT)
 
 	## Concatenate pdf
 	os.system('pdftk Res.pdf figure3.pdf cat output Resultat.pdf')

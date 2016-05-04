@@ -1,3 +1,5 @@
 -> Il serait bien de faire un fichier du style Readme pour savoir le rôle de chaque fichier et de savoir quoi lancer pour voir les résultats.
 
 -> (29/04/16) => Erreur dans le total des heures d'info (156h et non 166h)
+
+-> Suppression de la librarie "from pylab import *" qui bloque tkinter et légère modification du code

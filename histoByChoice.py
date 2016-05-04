@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-from pylab import *
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from matplotlib.backends.backend_pdf import PdfPages
@@ -22,6 +21,7 @@ def histoByChoice(subjects, Weeks, numberSubjects, fileTxt, fileT):
 	week=week1
 	print(week1)
 	print(week2)
+
 
 	numberWeeks=[]
 	if week2<week1:
@@ -160,7 +160,7 @@ def histoByChoice(subjects, Weeks, numberSubjects, fileTxt, fileT):
 		elif k==37:
 			col.append('#AF1594')
 		
-		figure(3)
+		plt.figure(3)
 		barWidth = 0.8
 		r = range(len(ListSubject))
 		plt.bar(r, ListSubject, width = barWidth,bottom=X ,color = col[k], edgecolor = ['blue' for i in y1], linestyle = 'solid', hatch ='/',linewidth = 3, label=subjects[k])
@@ -172,7 +172,7 @@ def histoByChoice(subjects, Weeks, numberSubjects, fileTxt, fileT):
 	plt.ylabel("Nombre d'Heures")
 	plt.title("Nombre d'heures par matière sur la période demandé")
 	plt.legend(loc='best')
-	savefig('figure1'+'.pdf')
+	plt.savefig('figure3'+'.pdf')
 	
 	return(duration, week, week2)
 

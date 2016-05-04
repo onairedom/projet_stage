@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-from pylab import *
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
+# import matplotlib.pyplot as plt
+# import matplotlib.patches as patches
 import pylab as plt
 from matplotlib.backends.backend_pdf import PdfPages
 
@@ -21,12 +20,12 @@ def histoByYear(subjects, secondWithCoeff, fileTxt):
 
 
 	##########################################################histogramme terminé######################################################################################
-	figure(1)
+	plt.figure(1)
 	plt.bar(x, nb_heure, align='center', edgecolor = 'red', hatch = '/')  # ces deux lignes permettent de mettre des string dans un histogrammes plutot que des entiers
 	plt.xticks(x, subjects) # x est une liste composé du nombre d'éléments qe l'on veut mettre en horizontal
 	plt.grid(True) # celà sert à mettre une grille dans le diagramme
 	plt.xlabel('Matières') 
 	plt.ylabel(u"Nombre d'heures")
 	plt.title("Nombre d'heures par matière sur l'année")
-	savefig('figure3'+'.pdf')
+	plt.savefig('figure1'+'.pdf')
 	# plt.text(600,500,'STCE=SOUTENANCE EW=Eval Wims')# a travailler
