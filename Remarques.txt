@@ -2,4 +2,7 @@
 
 -> (29/04/16) => Erreur dans le total des heures d'info (156h et non 166h)
 
--> Suppression de la librarie "from pylab import *" qui bloque tkinter et légère modification du code
+- Suppression de la librarie "from pylab import *" qui bloque tkinter et légère modification du code
+
+- Creation de l'interface graphique qui n'est pas complète
+
