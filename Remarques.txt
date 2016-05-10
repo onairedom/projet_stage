@@ -4,5 +4,7 @@
 
 - Suppression de la librarie "from pylab import *" qui bloque tkinter et légère modification du code
 
-- Creation de l'interface graphique qui n'est pas complète
+- Creation de l'interface graphique qui n'est pas complète, tkinter n'est pas facile à utiliser..
 
+
+-> J'ai réussi à créer une interface graphique correct. J'ai changer le fichier createTxt en createTxt2. J'ai créer la fonction dans tkinter_test.py, elle s'appelle askOpenTxt et permet de ne plus avoir a taper le nom du fichier txt dans le shell. histoByChoice2 remplace histoByChoice.

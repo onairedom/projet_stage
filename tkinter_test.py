@@ -4,7 +4,7 @@ from tkinter import *
 from tkinter.filedialog import *
 from createTab import *
 from creation_tuple import *
-from createTxt import *
+from createTxt2 import *
 from hourByYear import *
 from hourByWeek import *
 from histoByYear import *
@@ -37,23 +37,30 @@ def main():
 	Wk2 = Entry(fenetre)
 	Wk2.grid(row=3, column=3)
 
+	ok= Button(fenetre, text ='OK', command=weekByChoice)
+	ok.grid(row=1, column=3)
+
+	L4 = Label(fenetre, text = 'Nom du fichier pdf')
+	L4.grid(row = 3, column = 0)
+
+	global nameFile
+	nameFile = Entry(fenetre)
+	nameFile.grid(row=3,column=1)
+
 	if nbw == 0:
 		Wk1.configure(state='disabled')
 		Wk2.configure(state='disabled')
 
-	bouton = Checkbutton(fenetre, text="Choisir semaines", onvalue = 1, offvalue = 0, variable = nbw, command = nbWeek)
+	bouton = Checkbutton(fenetre, text="Choisir semaines", command = nbWeek)
 	bouton.grid(row=1, column=2)
 
-	# Definition valid semaine a faire et recupération de valeure pour histobychoice2
-	# ok = Checkbutton(fenetre, text="valid semaines", onvalue = 1, offvalue = 0, variable = nbw, command = nbWeek)
-	# ok.grid(row=1, column=3)
 
 	L1 = Label(fenetre, text="Nombre de documents")
-	L1.grid(row=1, column=0)
+	L1.grid(row=2, column=0)
 
 	global Entree
 	Entree = Entry(fenetre)
-	Entree.grid(row=2, column=0)
+	Entree.grid(row=2, column=1)
 	valeur = Button(fenetre, text =' Valider', command=repondre)
 	valeur.grid(row=0, column=0)
 	fenetre.mainloop()
@@ -61,18 +68,16 @@ def main():
 	##Creation de tuple
 	lst_tup = tuple1(full_list)
 
-	## Creation file txt
-	fileTxt, fileT = createTxt()
-
+	##creation fichier texte et pdf
+	fileTxt, fileT=askOpenTxt()
 
 	##creation listes temps en fonction de matière et liste de matière (voir hourByYear.py)
+	global subjects
 	subjects, secondWithCoeff, second, hourWithCoeff, hour=getHourByYear(lst_tup)
-	# print(secondWithCoeff)
-	# print(second)
-	# print(hourWithCoeff)
-	# print(hour)
 
 	##Créer tableau Heure/semaine et la variable nb de matière(voir hourByWeek.pŷ)
+	global Weeks
+	global numberSubjects
 	Weeks, numberSubjects = hourByWeek(lst_tup, subjects)
 
 	##Créer premier histogramme (voir histo_recap.py)
@@ -80,13 +85,21 @@ def main():
 
 	##Créer 2ème histogramme sur l'année( voir  histo2.py)
 	histoByWeek(subjects, Weeks, numberSubjects, fileTxt)
-
-	if nbw==1:
-		##Créer 3eme histogramme en fonction de l'utilisateur et afficher les 3 histogrammes(voir Periode.py)
-		duration, week1, week2 = histoByChoice2(subjects, Weeks, numberSubjects, fileTxt, fileT, Wk1, Wk2)
-
+		
+	##Création PDF avec toutes les infos
 	creationPdf(subjects, secondWithCoeff, week1, week2, Weeks, fileTxt, fileT)
 	
+
+def askOpenTxt():
+	if not nameFile.get():
+		return
+	else : 
+		## Creation file txt
+		global fileT
+		global fileTxt
+		nameFichier = nameFile.get()
+		fileTxt, fileT = createTxt(nameFichier)
+		return(fileTxt, fileT)
 
 ## supprime éléments vides
 def recondition(full_list):
@@ -100,6 +113,24 @@ def recondition(full_list):
 		full_list.remove([])
 
 	return full_list;
+
+
+
+def weekByChoice():
+	if not Wk1.get():
+		print('HEY')
+		return
+	else :
+		##Créer 3eme histogramme en fonction de l'utilisateur et afficher les 3 histogrammes(voir Periode.py)
+		print('Salut')
+		week1 = Wk1.get()
+		week2 = Wk2.get()
+		week1 = int(week1)
+		week2 = int(week2)
+		print(type (week1))
+		duration, week1, week2 = histoByChoice(subjects, Weeks, numberSubjects, fileTxt, fileT, week1, week2)
+		return(duration, week1, week2)
+		
 
 def repondre():
 	global full_list
@@ -167,20 +198,19 @@ def creationPdf(subjects, secondWithCoeff, week1, week2, Weeks, fileTxt, fileT):
 	fenetre.quit()
 
 def nbWeek():
-	
 	##active entry for futur histogram
 	Wk1.configure(state='normal')
 	Wk2.configure(state='normal')
-	nbw=1;
+
 
 	
 
 
-def validationSemaine():
-	week1 = Wk1.get()
-	week2 = Wk2.get()
-	print(week1)
-	print(week2)
+# def validationSemaine():
+# 	week1 = Wk1.get()
+# 	week2 = Wk2.get()
+# 	print(week1)
+# 	print(week2)
 	
 
 main()

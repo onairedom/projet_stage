@@ -15,12 +15,8 @@ def save(path, ext='png', close=True, verbose=True):
 	plt.savefig(savepath)
 	file.close()
 
-def histoByChoice(subjects, Weeks, numberSubjects, fileTxt, fileT, Wk1, Wk2):
-	week1 = Wk1
-	week2 = Wk2
-	print(week1)
-	print(week2)
-
+def histoByChoice(subjects, Weeks, numberSubjects, fileTxt, fileT, week1, week2):
+	
 
 	numberWeeks=[]
 	if week2<week1:
@@ -172,7 +168,9 @@ def histoByChoice(subjects, Weeks, numberSubjects, fileTxt, fileT, Wk1, Wk2):
 	plt.title("Nombre d'heures par matière sur la période demandé")
 	plt.legend(loc='best')
 	plt.savefig('figure3'+'.pdf')
+	plt.show()
+
 	
-	return(duration, week, week2)
+	return(duration, week1, week2)
 
 	
