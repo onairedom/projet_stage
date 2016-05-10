@@ -7,4 +7,12 @@
 - Creation de l'interface graphique qui n'est pas complète, tkinter n'est pas facile à utiliser..
 
 
--> J'ai réussi à créer une interface graphique correct. J'ai changer le fichier createTxt en createTxt2. J'ai créer la fonction dans tkinter_test.py, elle s'appelle askOpenTxt et permet de ne plus avoir a taper le nom du fichier txt dans le shell. histoByChoice2 remplace histoByChoice.
+-(10/05/2016) J'ai réussi à créer une interface graphique correct. J'ai changer le fichier createTxt en createTxt2. J'ai créer la fonction dans tkinter_test.py, elle s'appelle askOpenTxt et permet de ne plus avoir à taper le nom du fichier txt dans le shell. histoByChoice2 remplace histoByChoice. 
+Je crois que j'ai trouvé quelque chose d'intéressant parce que jusqu'à présent je n'avais rien trouvé qui fonctionne avec python3 mais uniquement sous python2. https://kivy.org/planet/2016/01/python-for-android-now-supports-python-3%C2%A0apks/
+
+Je pense que finalement le mieux est d'utiliser kivy pour créer une application android :
+https://kivy.org/docs/installation/installation-linux.html#ubuntu-11-10-or-newer
+Malheuresement je ne comprend pas tout..
+
+J'ai trouvé un site en français qui à l'air pas mal : http://wiki.labomedia.org/index.php/Th%C3%A8me_Kivy
+
