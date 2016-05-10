@@ -122,13 +122,12 @@ def weekByChoice():
 		return
 	else :
 		##Créer 3eme histogramme en fonction de l'utilisateur et afficher les 3 histogrammes(voir Periode.py)
-		print('Salut')
 		week1 = Wk1.get()
 		week2 = Wk2.get()
 		week1 = int(week1)
 		week2 = int(week2)
-		print(type (week1))
 		duration, week1, week2 = histoByChoice(subjects, Weeks, numberSubjects, fileTxt, fileT, week1, week2)
+
 		return(duration, week1, week2)
 		
 
@@ -152,33 +151,6 @@ def repondre():
 		fichier.close()
 	fenetre.quit()
 
-
-def choix():
-	
-
-	menubar = Menu(fenetre)
-	menu1 = Menu(menubar, tearoff=0)
-	menu1.add_command(label="Créer", command=choix)
-	menu1.add_command(label="Editer", command=choix)
-	menu1.add_separator()
-	menu1.add_command(label="Quitter", command=fenetre.quit)
-	menubar.add_cascade(label="Fichier", menu=menu1)
-	fenetre.config(menu=menubar)
-	fichier = Frame(fenetre, borderwidth=2, relief=GROOVE)
-	fichier.pack(side=LEFT, padx=30, pady=30)
-	Label(fichier, text="Charger Fichier").pack(padx=10, pady=10)
-	
-
-	##Creation de tuple
-	lst_tup = tuple1(full_list)
-
-	## Creation file txt
-	fileTxt, fileT = createTxt()
-	fenetre.quit()
-
-	##creation listes temps en fonction de matière et liste de matière (voir hourByYear.py)
-	subjects, secondWithCoeff, second, hourWithCoeff, hour=getHourByYear(lst_tup)
-
 def creationPdf(subjects, secondWithCoeff, week1, week2, Weeks, fileTxt, fileT):
 	## Concatenate pdf
 	os.system('pdftk figure1.pdf figure2.pdf cat output Res.pdf')
@@ -195,7 +167,6 @@ def creationPdf(subjects, secondWithCoeff, week1, week2, Weeks, fileTxt, fileT):
 
 	## Suppression pdf inutile
 	os.system('rm -rf figure1.pdf figure2.pdf figure3.pdf Resultat.pdf Res.pdf ' + fileT +'.pdf')
-	fenetre.quit()
 
 def nbWeek():
 	##active entry for futur histogram
@@ -205,12 +176,6 @@ def nbWeek():
 
 	
 
-
-# def validationSemaine():
-# 	week1 = Wk1.get()
-# 	week2 = Wk2.get()
-# 	print(week1)
-# 	print(week2)
 	
 
 main()
