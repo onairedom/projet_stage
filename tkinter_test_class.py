@@ -52,8 +52,61 @@ def creationPdf(subjects, secondWithCoeff, Weeks, fileTxt, fileT):
 		## Suppression pdf inutile
 		os.system('rm -rf figure1.pdf figure2.pdf Res.pdf ' + fileT +'.pdf')
 
+class Histogram:
+	def __init__(self):
+		self.full_list = []
+		self.lst_tup = ()
+		self.subjects = ""
+		self.secondWithCoeff = 0
+		self.second = 0
+		self.hourWithCoeff = 0
+		self.hour = 0
+		self.Weeks = []
+
+	def set_output_file(self, filename):
+		self.fileTxt, self.fileT = createTxt(filename)
+
+	def add_file(self, filename):
+		fichier = open(filename, "r")
+		content = fichier.read()
+			
+		##Creation de listes
+		lst=createTab(filename)
+		
+		self.full_list+=lst
+
+		##Suppression éléments vide
+		self.full_list = recondition(self.full_list)
+		fichier.close()
+
+		self.lst_tup = tuple1(self.full_list)
+		self.subjects, self.secondWithCoeff, self.second, self.hourWithCoeff, self.hour = getHourByYear(self.lst_tup)
+		##Créer tableau Heure/semaine et la variable nb de matière(voir hourByWeek.pŷ)
+		self.Weeks, self.numberSubjects = hourByWeek(self.lst_tup, self.subjects)
+
+	def create_by_year(self):
+		histoByYear(self.subjects, self.secondWithCoeff, self.fileTxt)
+
+	def create_by_week(self):
+		histoByWeek(self.subjects, self.Weeks, self.numberSubjects, self.fileTxt)
+
+
+	def create_by_choice(self, week1, week2):
+		##Créer 3eme histogramme en fonction de l'utilisateur et afficher les 3 histogrammes(voir Periode.py)
+		week1 = week1
+		week2 = week2
+		duration, useless_week1, useless_week2 = histoByChoice(self.subjects, self.Weeks, self.numberSubjects, self.fileTxt, self.fileT, week1, week2)
+			
+	def text_recap(self, week1, week2):
+		txtRecap(self.subjects, self.secondWithCoeff, week1, week2, self.Weeks, self.fileTxt, self.fileT)
+
+	def create_pdf(self):
+		creationPdf(self.subjects, self.secondWithCoeff, self.Weeks, self.fileTxt, self.fileT)
+
 class HistogramWindow:
 	def __init__(self):
+		self.hist = Histogram()
+
 		self.fenetre = Tk()
 		self.week1 = 0
 		self.week2 = 0
@@ -69,11 +122,6 @@ class HistogramWindow:
 
 		self.L3 = Label(self.fenetre, text="Deuxième semaine")
 		self.L3.grid(row=3, column=2)
-	
-	
-
-		self.ok= Button(self.fenetre, text ='OK', command=self.weekByChoice)
-		self.ok.grid(row=1, column=3)
 
 		self.L4 = Label(self.fenetre, text = 'Nom du fichier text')
 		self.L4.grid(row = 3, column = 0)
@@ -104,8 +152,8 @@ class HistogramWindow:
 
 
 	def openFiles(self):
-		self.fileTxt, self.fileT = self.askOpenTxt()
-		self.full_list = self.repondre()
+		self.hist.set_output_file(self.nameFile.get())
+		self.repondre()
 
 
 	def nbWeek(self):
@@ -117,76 +165,36 @@ class HistogramWindow:
 	def validate(self):
 		##creation fichier texte et pdf
 		##Creation de tuple
-		lst_tup = tuple1(self.full_list)
+		
 		##creation listes temps en fonction de matière et liste de matière (voir hourByYear.py)
+		self.hist.create_by_week()
+		self.hist.create_by_year()
 
-		self.subjects, secondWithCoeff, second, hourWithCoeff, hour = getHourByYear(lst_tup)
-		##Créer tableau Heure/semaine et la variable nb de matière(voir hourByWeek.pŷ)
-		self.Weeks, self.numberSubjects = hourByWeek(lst_tup, self.subjects)
-
-		##Créer premier histogramme (voir histo_recap.py)
-		histoByYear(self.subjects, secondWithCoeff, self.fileTxt)
-
-		##Créer 2ème histogramme sur l'année( voir  histo2.py)
-		histoByWeek(self.subjects, self.Weeks, self.numberSubjects, self.fileTxt)
-
-		if(not self.Wk1.get() or not self.Wk2.get()):
-			txtRecap(self.subjects, secondWithCoeff, 0, 0, self.Weeks, self.fileTxt, self.fileT)
-		else:
+		if(self.Wk1.get() and self.Wk2.get()):
 			##Création PDF avec toutes les infos
 			week1 = int(self.Wk1.get())
 			week2 = int(self.Wk2.get())
-			txtRecap(self.subjects, secondWithCoeff, week1, week2, self.Weeks, self.fileTxt, self.fileT)
+			self.hist.create_by_choice(week1, week2)
+			self.hist.text_recap(week1, week2)
+		else:
+			self.hist.text_recap(0, 0)
 
-		creationPdf(self.subjects, secondWithCoeff, self.Weeks, self.fileTxt, self.fileT)
-
+		self.hist.create_pdf()
 		plt.show()
 		
-			
-	def weekByChoice(self):
-		if not self.Wk1.get():
-			print('HEY')
-			return
-		else:
-			##Créer 3eme histogramme en fonction de l'utilisateur et afficher les 3 histogrammes(voir Periode.py)
-			week1 = self.Wk1.get()
-			week2 = self.Wk2.get()
-			week1 = int(week1)
-			week2 = int(week2)
-			duration, useless_week1, useless_week2 = histoByChoice(self.subjects, self.Weeks, self.numberSubjects, self.fileTxt, self.fileT, week1, week2)
-			print('week',week1,week2)
-			return (duration, week1, week2)
-			
-
-
-
 
 	def askOpenTxt(self):
 		if not self.nameFile.get():
 			return
 		else : 
 			## Creation file txt
-			nameFichier = self.nameFile.get()
 			fileTxt, fileT = createTxt(nameFichier)
 			return (fileTxt, fileT)
 
 	def repondre(self):
-		full_list = []
-		cpt=int(self.Entree.get())
-		for i in range (cpt):
+		for i in range(int(self.Entree.get())):
 			filename = askopenfilename(title="Ouvrir votre document",filetypes=[('txt files','.ics'),('all files','.*')] and [('txt files','.txt'),('all files','.*')] )
-			fichier = open(filename, "r")
-			content = fichier.read()
-			
-			##Creation de listes
-			lst=createTab(filename)
-			
-			full_list+=lst
-
-			##Suppression éléments vide
-			full_list = recondition(full_list)
-			fichier.close()
-		return full_list
+			self.hist.add_file(filename)
 	
 
 #main()

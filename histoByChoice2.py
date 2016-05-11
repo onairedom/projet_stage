@@ -168,8 +168,6 @@ def histoByChoice(subjects, Weeks, numberSubjects, fileTxt, fileT, week1, week2)
 	plt.title("Nombre d'heures par matière sur la période demandé")
 	plt.legend(loc='best')
 	plt.savefig('figure3'+'.pdf')
-	plt.show()
-
 	
 	return(duration, week1, week2)
 
