@@ -28,4 +28,3 @@ def histoByYear(subjects, secondWithCoeff, fileTxt):
 	plt.ylabel(u"Nombre d'heures")
 	plt.title("Nombre d'heures par matière sur l'année")
 	plt.savefig('figure1'+'.pdf')
-	# plt.text(600,500,'STCE=SOUTENANCE EW=Eval Wims')# a travailler

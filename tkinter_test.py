@@ -17,13 +17,12 @@ import os
 
 def main():
 	global fenetre
-	global nbw; nbw = 0; 
 	global week1; global week2
 	global Wk1; global Wk2
-	week1=0; week2=0
+	global enable; global cpt;
 	fenetre = Tk()  #Défini la fenètre tkinter au nom de fenètre
 
-	
+	week1,week2 = initialisation()
 	##creation du texte pour
 	L2 = Label(fenetre, text="Première semaine")
 	L2.grid(row=2, column=2)
@@ -40,16 +39,16 @@ def main():
 	ok= Button(fenetre, text ='OK', command=weekByChoice)
 	ok.grid(row=1, column=3)
 
-	L4 = Label(fenetre, text = 'Nom du fichier pdf')
+	L4 = Label(fenetre, text = 'Nom du fichier text')
 	L4.grid(row = 3, column = 0)
 
 	global nameFile
 	nameFile = Entry(fenetre)
 	nameFile.grid(row=3,column=1)
 
-	if nbw == 0:
-		Wk1.configure(state='disabled')
-		Wk2.configure(state='disabled')
+	# if nbw == 0:
+	Wk1.configure(state='disabled')
+	Wk2.configure(state='disabled')
 
 	bouton = Checkbutton(fenetre, text="Choisir semaines", command = nbWeek)
 	bouton.grid(row=1, column=2)
@@ -89,6 +88,10 @@ def main():
 	##Création PDF avec toutes les infos
 	creationPdf(subjects, secondWithCoeff, week1, week2, Weeks, fileTxt, fileT)
 	
+def initialisation():
+	week2=0
+	week1=0
+	return(week1,week2)
 
 def askOpenTxt():
 	if not nameFile.get():
@@ -117,6 +120,7 @@ def recondition(full_list):
 
 
 def weekByChoice():
+	cpt=1
 	if not Wk1.get():
 		print('HEY')
 		return
@@ -149,30 +153,40 @@ def repondre():
 		##Suppression éléments vide
 		full_list = recondition(full_list)
 		fichier.close()
-	fenetre.quit()
 
 def creationPdf(subjects, secondWithCoeff, week1, week2, Weeks, fileTxt, fileT):
 	## Concatenate pdf
 	os.system('pdftk figure1.pdf figure2.pdf cat output Res.pdf')
-
-	##Créer fichier texte récapitulatif
+	# if not Wk1.get():
+	# 	print('HEY')
+		
+	# else :
+	# 	week1 = Wk1.get()
+	# 	week2 = Wk2.get()
+	# 	week1 = int(week1)
+	# 	week2 = int(week2)
+	
+	#Créer fichier texte récapitulatif
+	print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',week2,week1)
 	txtRecap(subjects, secondWithCoeff, week1, week2, Weeks, fileTxt, fileT)
-
 	## Concatenate pdf
-	if nbw==0 :
-		os.system('pdftk Res.pdf ben.pdf cat output Recapitulatif.pdf')
-	else :	
+	if os.path.exists('figure3.pdf') :
 		os.system('pdftk Res.pdf figure3.pdf cat output Resultat.pdf')
-		os.system('pdftk Resultat.pdf ben.pdf cat output Recapitulatif.pdf')
+		os.system('pdftk Resultat.pdf '+fileT+'.pdf cat output Recapitulatif.pdf')
+		## Suppression pdf inutile
+		os.system('rm -rf figure1.pdf figure2.pdf figure3.pdf Resultat.pdf Res.pdf ' + fileT +'.pdf')
+		
+	else :	
+		os.system('pdftk Res.pdf '+ fileT+'.pdf cat output Recapitulatif.pdf')
+		## Suppression pdf inutile
+		os.system('rm -rf figure1.pdf figure2.pdf Res.pdf ' + fileT +'.pdf')
 
-	## Suppression pdf inutile
-	os.system('rm -rf figure1.pdf figure2.pdf figure3.pdf Resultat.pdf Res.pdf ' + fileT +'.pdf')
-
+	
 def nbWeek():
 	##active entry for futur histogram
 	Wk1.configure(state='normal')
 	Wk2.configure(state='normal')
-
+	# nbw = 1
 
 	
 

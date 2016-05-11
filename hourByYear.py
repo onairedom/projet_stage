@@ -89,5 +89,3 @@ def getHourByYear(inputTuple):
 
 
 	return(subjects, secondWithCoeff, second, hourWithCoeff, hour);
-	#   input/gpu.txt
-	#	input/EPU.ics

@@ -66,5 +66,3 @@ def txtRecap(subjects, secondWithCoeff, week1, week2, Weeks, fileTxt, fileT):
 		
 	file.close()
 	os.system("enscript " + fileT + ".txt -o - | ps2pdf - " + fileT + ".pdf")
-
-	plt.show()
