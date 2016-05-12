@@ -95,7 +95,7 @@ class Histogram:
 		##Créer 3eme histogramme en fonction de l'utilisateur et afficher les 3 histogrammes(voir Periode.py)
 		week1 = week1
 		week2 = week2
-		duration, useless_week1, useless_week2 = histoByChoice(self.subjects, self.Weeks, self.numberSubjects, self.fileTxt, self.fileT, week1, week2)
+		duration = histoByChoice(self.subjects, self.Weeks, self.numberSubjects, self.fileTxt, self.fileT, week1, week2)
 			
 	def text_recap(self, week1, week2):
 		txtRecap(self.subjects, self.secondWithCoeff, week1, week2, self.Weeks, self.fileTxt, self.fileT)

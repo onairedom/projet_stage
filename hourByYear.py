@@ -87,5 +87,5 @@ def getHourByYear(inputTuple):
 		t2=datetime.timedelta(0,(0+0))
 		t=datetime.timedelta(0,(0+0))
 
-
+	print(secondWithCoeff, second)
 	return(subjects, secondWithCoeff, second, hourWithCoeff, hour);

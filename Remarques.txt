@@ -17,5 +17,4 @@ Malheuresement je ne comprend pas tout..
 J'ai trouvé un site en français qui à l'air pas mal : http://wiki.labomedia.org/index.php/Th%C3%A8me_Kivy
 
 
--(11/05/2016) tkinter_test es devenu tkinter_test_class. J'ai été bien aidé... Demain je vais essayer de trouver l'erreur des 10h d'infos
-
+-12/05/2016 Je pense que l'erreur des 10h d'infos ne vient pas du code mais du fichier gpu que j'aurai modifié il y a un moment. Serait il possible que vous repreniez l'original pour vérifier ou me le transférer ?
