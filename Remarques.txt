@@ -17,4 +17,8 @@ Malheuresement je ne comprend pas tout..
 J'ai trouvé un site en français qui à l'air pas mal : http://wiki.labomedia.org/index.php/Th%C3%A8me_Kivy
 
 
--12/05/2016 Je pense que l'erreur des 10h d'infos ne vient pas du code mais du fichier gpu que j'aurai modifié il y a un moment. Serait il possible que vous repreniez l'original pour vérifier ou me le transférer ?
+-12/05/2016 Je pense que l'erreur des 10h d'infos ne vient pas du code mais du fichier gpu que j'aurai modifié il y a un moment. Serait-il possible que vous repreniez l'original pour vérifier ou me le transférer ?
+J'ai réussi à créer un fichier apk en tant qu'example malheuresement lors de l'installation de celui-ci sur mon smartphone l'application crash. Sinon j'essais désormais de créer ma propre application et je la teste directement sur l'ordinateur pour avoir un aperçu de l'interface graphique que j'obtiendrais. Je n'arrive pas encore à intégrer des Textbox dans l'application.
+
+-18/05/2016 J'ai laissé tomber la possibilité de faire ma propre application apk et j'ai réussi à faire marcher une application à l'aide de kivy launcher. Je vais commencer à créer ma propre application grâce à cela et on verra ensemble comment créer un apk fonctionnel.
+Je vous ai mis un des apk que j'ai réussi à faire sur github mais ne fonctionne pas.

@@ -169,6 +169,6 @@ def histoByChoice(subjects, Weeks, numberSubjects, fileTxt, fileT, week1, week2)
 	plt.legend(loc='best')
 	plt.savefig('figure3'+'.pdf')
 	
-	return(duration, week1, week2)
+	return(duration)
 
 	
