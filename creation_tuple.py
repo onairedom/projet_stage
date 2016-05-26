@@ -9,5 +9,5 @@ def tuple1(lst):
 	for list_element in lst:
 		# transform list element in tuple element
 		tup = tup + (tuple(list_element),)
-
+	
 	return tup

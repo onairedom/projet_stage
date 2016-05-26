@@ -41,7 +41,7 @@ def hourByWeek(inputTuple, subjects):
 		elif subject=='Férié':
 			break;
 		s=j[8]
-		
+
 		Hour=','.join(j[7])  #Sépare  heure pour créer Heure avec datetime
 		H=Hour[0]
 		if Hour[2].isnumeric()==True:
@@ -67,4 +67,5 @@ def hourByWeek(inputTuple, subjects):
 		if subject in Weeks[0]:  #Recherche le nom de la matière dans la première ligne du tableau semaine pour lui assigné la position de la matière dans le tableau par la suite
 			index=Weeks[0].index(subject)
 		Weeks[s][index]=time2+Weeks[s][index]
+
 	return(Weeks,numberSubjects);

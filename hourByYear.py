@@ -39,8 +39,6 @@ def getHourByYear(inputTuple):
 		t2=datetime.timedelta(0,(0+0))
 		t1=datetime.timedelta(0,(0+0))
 		for elementTuple in inputTuple: #prend chaque ligne grand tableau
-
-			cp+=1
 			for member in elementTuple:  #Récup info dans chaque ligne
 				
 				if member=='SOUTENANCE':
@@ -53,8 +51,6 @@ def getHourByYear(inputTuple):
 					#Récupère durée d'un cours
 					Hour=','.join(elementTuple[7])  #Sépare  heure pour créer Heure avec datetime
 					H=Hour[0]
-					
-			
 					if Hour[2].isnumeric()==True:
 						H=Hour[0]+Hour[2]
 					if Hour[6].isnumeric()==True and Hour[4].isnumeric()==True:
@@ -66,10 +62,13 @@ def getHourByYear(inputTuple):
 					t1=datetime.timedelta(0,(3600*H+60*M))
 					t2=t1+t2
 					if elementTuple[1]==1:	#Permet d'augmenter heure faite en fonction type de séance cours,td,tp...
-						t=t+t1*1.5
+						t=t+t1*0.5
+					
 					if elementTuple[0]=='DS':
 						t=t+t1*0.5
 					elif elementTuple[0]=='AM2':
+						t=t+t1*0.5
+					elif elementTuple[5]==1:
 						t=t+t1*0.5
 					else:
 						t=t+t1
@@ -87,5 +86,5 @@ def getHourByYear(inputTuple):
 		t2=datetime.timedelta(0,(0+0))
 		t=datetime.timedelta(0,(0+0))
 
-	print(secondWithCoeff, second)
+	
 	return(subjects, secondWithCoeff, second, hourWithCoeff, hour);

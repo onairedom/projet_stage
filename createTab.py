@@ -37,15 +37,15 @@ def createTab(path):
 			l='\s';
 		S0=S0+l
 
-	for tab in range(Nb-1):
+	for tab in range(Nb):
 		lst.append([])
 	#### Après avoir créer le tableau de la bonne taille par rapport au nombre de BEGIN:VEVENT#################
 	##########Je Met n'importe quel fichier sous la forme d'une seule grande ligne qui peut être par la suite partitionné le nb de fois nécessaire pour récupérer les informations afin de remplir mon tableau###############
-	a,b,c=S0.partition("BEGIN:VEVENT") 
-	d,k,f=c.partition("END:VEVENT") #######Je coupe la première info entre BEGIN et END VEVENT que j'envoie ensuite dans la boucle###############
-	for e in range (Nb-1):
-		l1,b1,c1=f.partition("BEGIN:VEVENT")
-		l2,b2,f=c1.partition('END:VEVENT')
+	# a,b,c=S0.partition("BEGIN:VEVENT") 
+	# d,k,f=c.partition("END:VEVENT") #######Je coupe la première info entre BEGIN et END VEVENT que j'envoie ensuite dans la boucle###############
+	for e in range (Nb):
+		l1,b1,c1=S0.partition("BEGIN:VEVENT")
+		l2,b2,S0=c1.partition('END:VEVENT')
 		if 'Férié' in l2:  ################### Il es possible que certains jour soit férié et le tableau de cours ne doit pas en tenir compte
 			lst[tab1].append("Férié")
 			l1,b1,c1=f.partition("BEGIN:VEVENT")
@@ -157,11 +157,9 @@ def createTab(path):
 					Type=Type+(g1[aa])
 					aa+=1;
 				a1=0;a2=0;a3=1;a4=0;
-			# if e6[:1].isnumeric==True:
-			# 	Type=Type+e6[:1]
-			# 	if e6[1:2].isnumeric==True:
-			# 		Type=Type+e6[1:2]
-			a5='0'
+			a5=0;
+			if '_TD' in l2:
+				a5=1;a1=0;a2=0;a3=0;a4=0;
 			j+=1;
 			if j==3:
 				lst[tab1].append(Sujet)

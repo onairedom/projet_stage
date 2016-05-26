@@ -111,24 +111,3 @@ main()
 
 
 
-
-# def demande():
-# 	# Récupérer tous les tab à partir des fichiers
-# 	list_tab = []
-# 	for
-# 		path = getFilePath()
-# 		tab.append(txt2tab(path))
-
-# 	# Rassembler les tab en 1 seul
-# 	tab = assemble_tab(list_tab)
-
-# 	# Transformer table en tuple
-# 	tup = tab2tuple(tab)
-
-# 	# a=int(input("Combien de fichiers voulez vous charger ?"))
-
-# 	# for e in range(b1):
-# 	# 	a=input('Donnez le chemin du fichier')
-# 	# 	lst=tableau(a)
-# 	return(lst)
-

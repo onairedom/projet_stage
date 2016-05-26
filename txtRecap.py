@@ -5,7 +5,7 @@ import pylab as plt
 import os
 
 def txtRecap(subjects, secondWithCoeff, week1, week2, Weeks, fileTxt, fileT):
-	Hour=[]; cptSemaine=0;wcpt='';cptH=0
+	Hour=[]; cptSemaine=0;wcpt='';cptH=0; cptT=0
 	file = open (fileTxt,'a')
 	for i in range(len(secondWithCoeff)):
 		Hour.append([])
@@ -15,7 +15,11 @@ def txtRecap(subjects, secondWithCoeff, week1, week2, Weeks, fileTxt, fileT):
 	for subject in subjects:
 		print ("Dans l'annee vous avez", Hour[cpt], " H de", subject)
 		file.write("Dans l'annee vous avez "+str(Hour[cpt])+ " H de "+ str(subject)+"\n")
+		cptT=cptT+Hour[cpt]
 		cpt+=1;
+		
+	print ("Dans l'annee vous avez", cptT, " H de cours")
+	file.write("Dans l'annee au total vous avez "+str(cptT)+" H de cours\n")
 
 	if week1!=0 and week2!=0:
 		for week in range(len(Weeks)):
@@ -65,4 +69,4 @@ def txtRecap(subjects, secondWithCoeff, week1, week2, Weeks, fileTxt, fileT):
 					cptSemaine=0
 		
 	file.close()
-	os.system("enscript " + fileT + ".txt -o - | ps2pdf - " + fileT + ".pdf")
+	os.system("enscript Recapitulatif.txt -o - | ps2pdf - Recap.pdf")

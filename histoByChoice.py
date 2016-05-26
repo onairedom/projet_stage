@@ -19,8 +19,6 @@ def histoByChoice(subjects, Weeks, numberSubjects, fileTxt, fileT):
 	week1=int(input("Quelles semaines voulez vous voir ? Donnez la première "))
 	week2=int(input("La deuxième "))
 	week=week1
-	print(week1)
-	print(week2)
 
 
 	numberWeeks=[]
